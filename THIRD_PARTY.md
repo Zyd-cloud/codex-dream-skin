@@ -7,24 +7,12 @@ at runtime from the copy of Codex already installed on the user's own machine.
 
 ## License of this repository: AGPL-3.0-only
 
-`LICENSE` holds the full GNU Affero General Public License v3.0. It applies to
-the whole work, because the skin renderer bundled here is AGPL-3.0.
+`LICENSE` holds the full GNU Affero General Public License v3.0. It applies to the
+whole work because `engine/assets/safe-css.js` is a port of an AGPL-3.0 file (see
+below). Everything else bundled here is MIT, so replacing that single file with
+an independent implementation would let this repository move to MIT.
 
 ## Bundled components
-
-### `engine/assets/` — from Codex++ (AGPL-3.0)
-
-| File | Upstream |
-| --- | --- |
-| `dream-skin.css` | [BigPizzaV3/CodexPlusPlus](https://github.com/BigPizzaV3/CodexPlusPlus) |
-| `renderer-inject.js` | same |
-| `safe-css.js` | same — the Safe CSS compiler, ported from the Rust side |
-| `dream-skin-native-shell-compat.css` | same |
-| `dream-skin-community-compat.css` | same |
-
-These were taken from Codex++ and are redistributed here under AGPL-3.0, the
-same license the upstream project uses. If you build on this repository, the
-AGPL obligations travel with them.
 
 ### `engine/scripts/` — from Codex Dream Skin (MIT), with modifications
 
@@ -39,7 +27,7 @@ Upstream: [axdlee/Codex-Dream-Skin](https://github.com/axdlee/Codex-Dream-Skin),
 | `injector.mjs` | **modified** (see below) |
 | `theme-windows.ps1` | **modified** (see below) |
 
-Modifications, as AGPL-3.0 requires being stated:
+Modifications, stated as the license requires:
 
 - `injector.mjs` — accepted `safeArea` values narrowed to `left | right | none`
   and `taskMode` to `ambient | full | off`; `probeSession` additionally requires
@@ -53,22 +41,47 @@ The upstream standalone entry points (`start-`, `restore-`, `install-`,
 `verify-`, `tray-dream-skin.ps1`) are **not** included: this plugin drives the
 engine through its own scripts instead.
 
+### `engine/assets/` — from Codex Dream Skin (MIT)
+
+Upstream: [Fei-Away/Codex-Dream-Skin](https://github.com/Fei-Away/Codex-Dream-Skin).
+MIT. Obtained through the community market at [dreamskin.cc](https://dreamskin.cc).
+
+| File | Provenance |
+| --- | --- |
+| `renderer-inject.js` | **byte-identical** to upstream `windows/assets/renderer-inject.js` (61,079 bytes, SHA-256 match) |
+| `dream-skin.css` | the same file's lineage: begins with the upstream v1.5.20 content and continues with ~1.7 KB of later rules (comments reference Codex 26.930, upstream issues #176 and #244), i.e. a newer build than any tag in the public tree |
+| `dream-skin-native-shell-compat.css` | same distribution, `@layer theme` shell overrides |
+| `dream-skin-community-compat.css` | same distribution, Windows `application-menu` chrome paint |
+| `theme.json`, `dream-reference.jpg` | **written for this repository.** The upstream files were removed on purpose: their `theme.json` describes a preset named after a real person and points at `dream-reference.jpg`, which the upstream NOTICE explicitly excludes from its MIT grant. Both are replaced here with original generated artwork. |
+
+### `engine/assets/safe-css.js` — from Codex++ (AGPL-3.0)
+
+A port of the Safe CSS compiler in
+[BigPizzaV3/CodexPlusPlus](https://github.com/BigPizzaV3/CodexPlusPlus),
+`crates/codex-plus-core/src/dream_skin_package.rs`. Codex++ is AGPL-3.0 as a whole
+repository, which is why this repository is too.
+
+Nothing else here comes from Codex++. In particular the skin renderer and its
+CSS are **not** Codex++ files; they belong to the Codex Dream Skin project above.
+The two projects are unrelated apart from this one ported helper.
+
 ## Written for this repository
 
 - `index.mjs`, `worker.mjs`, `page/*`, `launcher/*`
 - `engine/scripts/bootstrap-dream-skin.ps1`, `control-dream-skin.ps1`,
   `ensure-injector.ps1`, `watch-codex.ps1`
-- `default-theme/background.jpg` — generated procedurally for this repository
-  from gradients and arcs; contains no characters, photographs or third-party
-  artwork.
+- `default-theme/*` — generated procedurally from gradients and arcs; no
+  characters, photographs or third-party artwork
+- `docs/screenshot.png` — the page captured with generated demo data
+- `tests/*`
 
 ## Deliberately not included
 
 | Excluded | Why |
 | --- | --- |
 | `chatgpt-tray-*.ico`, `icon-chatgpt.ico` | OpenAI artwork. Bootstrap copies one out of the user's own Codex installation into `%LOCALAPPDATA%` at first run; it is never redistributed here. |
-| `assets/dream-reference.jpg` | The upstream NOTICE explicitly excludes it from their MIT grant (third-party likeness), and it is in any case user-supplied artwork. |
-| `presets/preset-romantic-rose/*` | Same exclusion upstream: portrait of a real person. |
+| upstream `assets/dream-reference.jpg` | The upstream NOTICE explicitly excludes it from their MIT grant (third-party likeness), and it is in any case user-supplied artwork. |
+| upstream `presets/preset-romantic-rose/*` | Same exclusion: portrait of a real person. |
 | Community market themes | Downloaded at runtime by the user from the community service; each carries its own author and license. |
 
 ## Runtime downloads

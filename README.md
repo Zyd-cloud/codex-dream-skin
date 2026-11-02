@@ -67,6 +67,19 @@ magpie 窗口的 Plugins 分组里点「Codex 梦境皮肤」。
 预览图由插件自己下载生成（页面沙箱禁止联网，图片必须先在页面目录里）。翻页时按需补图，
 不锁界面。
 
+## 主题市场
+
+目录来自 **https://dreamskin.cc**（/gallery 浏览、/studio 制作、/docs 包格式、/download 客户端），
+接口是 https://api.dreamskin.cc/v1/themes，当前 880 个主题。
+
+每个主题的 manifest.json 里都有 license 字段，由作者自己填写，实际分布很杂：MIT 约 41%、
+CC BY 4.0 约 13%，其余是 Personal Use / All Rights Reserved / Fan-Art 等，还有少量乱填的值。
+/docs 说明了 LICENSE.txt 是"预留、当前版本不使用"，也就是**市场没有统一条款，一切以 manifest 为准**。
+
+所以：**下载并按 manifest 使用是用户与作者之间的事**，本插件只负责校验完整性（大小 + SHA-256）后安装，
+不做再分发。本仓库捆绑的主题只有 default-theme/，是生成的原创图。
+
+选主题前想确认能不能二次使用，看它 /themes/<versionId> 页面或包里 manifest 的 license。
 ## 为什么用桌面图标启动
 
 Codex 是 Chromium 应用，对 `user-data-dir` 持独占锁。**关闭后立刻重启会抢不到锁，新实例几秒内
@@ -171,8 +184,14 @@ node ui-redraw-test.mjs   # 状态不变时不该重建卡片
 
 ## 许可证
 
-[AGPL-3.0-only](./LICENSE)。引擎来自 [axdlee/Codex-Dream-Skin](https://github.com/axdlee/Codex-Dream-Skin)（MIT），
-渲染资产来自 [BigPizzaV3/CodexPlusPlus](https://github.com/BigPizzaV3/CodexPlusPlus)（AGPL-3.0）。
-完整归属、修改说明与「刻意不包含的内容」见 [THIRD_PARTY.md](./THIRD_PARTY.md)。
+[AGPL-3.0-only](./LICENSE)。引擎脚本来自 [axdlee/Codex-Dream-Skin](https://github.com/axdlee/Codex-Dream-Skin)（MIT），
+渲染器与皮肤 CSS 来自 [Fei-Away/Codex-Dream-Skin](https://github.com/Fei-Away/Codex-Dream-Skin)（MIT），
+两者都是同一个 "Codex Dream Skin" 项目。
+
+仓库之所以是 AGPL-3.0，只因为 `engine/assets/safe-css.js` 是从
+[BigPizzaV3/CodexPlusPlus](https://github.com/BigPizzaV3/CodexPlusPlus)（AGPL-3.0）移植的
+Safe CSS 编译器 —— 除此之外没有 Codex++ 的东西。把这个文件换掉，其余部分就可以改成 MIT。
+
+完整归属、对上游的修改说明、以及「刻意不包含的内容」见 [THIRD_PARTY.md](./THIRD_PARTY.md)。
 
 本项目与 OpenAI 无关联。

@@ -37,6 +37,21 @@ Then launch Codex **from the desktop shortcut** the plugin creates — it is the
 only entry point that passes the debugging port the injector needs. Open the page
 from magpie's Plugins group.
 
+## Theme market
+
+The catalog comes from **https://dreamskin.cc** (/gallery to browse, /studio to author,
+/docs for the package format, /download for the client), served by
+https://api.dreamskin.cc/v1/themes — 880 themes at the time of writing.
+
+Every theme declares a license in its manifest.json, chosen by its author. The spread is
+uneven: about 41% MIT, 13% CC BY 4.0, the rest Personal Use / All Rights Reserved / Fan-Art,
+plus a few values that are plainly junk. /docs notes that LICENSE.txt is reserved and unused
+in the current version, so **the market has no blanket terms — the manifest is the terms**.
+
+Downloading and using a theme is therefore between the user and its author. This plugin only
+verifies a package (size + SHA-256) before installing it and redistributes nothing; the one theme
+bundled in this repository is default-theme/, generated art. To check whether a theme may be
+reused, read the license on its /themes/<versionId> page or in the package manifest.
 ## Why the shortcut matters
 
 Codex is a Chromium app holding an exclusive lock on its `user-data-dir`. Close it
@@ -88,10 +103,18 @@ node ui-redraw-test.mjs
 
 ## License
 
-[AGPL-3.0-only](./LICENSE). The engine comes from
+[AGPL-3.0-only](./LICENSE). The engine scripts come from
 [axdlee/Codex-Dream-Skin](https://github.com/axdlee/Codex-Dream-Skin) (MIT) and the
-renderer assets from [BigPizzaV3/CodexPlusPlus](https://github.com/BigPizzaV3/CodexPlusPlus)
-(AGPL-3.0). Attribution, the changes made, and what is deliberately excluded are
-in [THIRD_PARTY.md](./THIRD_PARTY.md).
+renderer and skin CSS from
+[Fei-Away/Codex-Dream-Skin](https://github.com/Fei-Away/Codex-Dream-Skin) (MIT) —
+both are the same Codex Dream Skin project.
+
+The repository is AGPL-3.0 for one reason only: `engine/assets/safe-css.js` is a
+port of the Safe CSS compiler from
+[BigPizzaV3/CodexPlusPlus](https://github.com/BigPizzaV3/CodexPlusPlus) (AGPL-3.0).
+Nothing else here comes from Codex++. Replace that one file and the rest can be MIT.
+
+Attribution, the changes made to upstream, and what is deliberately excluded are in
+[THIRD_PARTY.md](./THIRD_PARTY.md).
 
 Unofficial. Not affiliated with OpenAI.
