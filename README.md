@@ -62,7 +62,7 @@ magpie plugin on codex-dream-skin
 bootstrap 每 6 小时会重跑一次，所以**删掉的图标会自己回来**。不想让它建：
 
 ```powershell
-New-Item "C:\Users\hp\AppData\Local\CodexDreamSkin\no-shortcuts.flag"
+New-Item "$env:LOCALAPPDATA\CodexDreamSkin\no-shortcuts.flag"
 ```
 
 ### 4. 打开页面
