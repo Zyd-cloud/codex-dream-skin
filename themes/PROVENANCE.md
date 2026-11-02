@@ -59,9 +59,12 @@ Reading the table:
   `dream-skin-original`, `firefly-sunny-sea-20261027`, `glass-vision`,
   `renminwansui`, `waves-summer-rendezvous-20261027`, `z-hou-qingmei`.
 
-If this repository is ever published, delete the folder for any theme whose
-license does not permit it. Removing a theme is just deleting its directory; the
-plugin seeds whatever is present and nothing references a fixed set.
+These themes are included in this public repository as part of the shipped
+starter library, with their authors and licenses recorded above so anyone can see
+whose work they are. If you redistribute this repository or build something from
+it, the ones marked above are not yours to pass on: delete those folders first.
+Removing a theme is just deleting its directory — the plugin seeds whatever is
+present and nothing references a fixed set.
 
 `dream-skin-default` is the only theme written for this repository: gradients and
 arcs generated procedurally, no characters or photographs.

@@ -85,9 +85,10 @@ version and license recorded, and a link to its own page, in
 
 The market has no blanket terms: a package's `manifest.json` `license` field is the
 entire statement, and authors fill it in freely (MIT, CC BY, Personal Use, All Rights
-Reserved, and in one case literally `1`). Themes that are not licensed for
-redistribution are listed in `themes/PROVENANCE.md` with the exact folders to delete
-before publishing this repository.
+Reserved, and in one case literally `1`). Themes whose license does not permit
+redistribution are listed in `themes/PROVENANCE.md`, with their authors, so the
+provenance is on the record; anyone redistributing this repository or building on it
+should delete those folders first.
 
 `dream-skin-original` and `glass-vision` have no market record and no
 `manifest.json` — they predate the current package format and their origin is not
