@@ -642,8 +642,18 @@ function claimRequest(id, action) {
     fs.mkdirSync(CLAIM_DIR, { recursive: true });
     try {
       const existing = fs.statSync(claimPath);
+      // A finished claim is permanent. magpie keeps the last request in its
+      // options file and never clears it, so with only the staleness window a
+      // restart after 90 s replayed whatever the user clicked last: an old
+      // market-install downloaded again, an old switch pulled a theme back.
+      try {
+        const record = JSON.parse(fs.readFileSync(claimPath, "utf8"));
+        if (record && record.done) return false;
+      } catch {}
+      // Not finished: the host must have been killed mid-command, so a retry is
+      // legitimate once the window has passed.
       if (Date.now() - existing.mtimeMs < CLAIM_STALE_MS) return false;
-      fs.rmSync(claimPath, { force: true });   // abandoned by a killed host
+      fs.rmSync(claimPath, { force: true });
     } catch {}
     fs.writeFileSync(claimPath, JSON.stringify({ id, action, at: Date.now() }),
       { encoding: "utf8", flag: "wx" });
@@ -658,6 +668,22 @@ function claimRequest(id, action) {
     if (error?.code === "EEXIST") return false;
     return true;
   }
+}
+
+/**
+ * Stamp a claim as handled so it is never replayed. Written after `handle()`
+ * returns, success or failure: a failed command that replayed on every restart
+ * would fail the same way forever and hide the error behind a fresh retry.
+ */
+function finishClaim(id, action, outcome) {
+  if (!id) return;
+  try {
+    fs.writeFileSync(
+      path.join(CLAIM_DIR, `${id}.json`),
+      JSON.stringify({ id, action, at: Date.now(), done: true, ok: Boolean(outcome?.ok) }),
+      "utf8",
+    );
+  } catch {}
 }
 
 // The community market Codex++ itself uses. 863 themes at the time of writing;
@@ -956,6 +982,7 @@ async function commandLoop() {
     lastRequestId = id;
     log(`request ${id}: ${request.action || "(none)"} ${request.themeId || ""}`);
     const outcome = await handle(request);
+    finishClaim(id, request.action, outcome);
     lastPublishAt = Date.now();
     publish({
       id,
