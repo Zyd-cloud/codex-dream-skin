@@ -439,6 +439,10 @@ function bootstrap() {
     "-ThemeLibrary", path.join(ROOT, "themes"),
     "-LauncherDir", path.join(ROOT, "launcher"),
     "-Port", String(PORT),
+    // Opting out has to be sticky: bootstrap re-runs every few hours, so a
+    // shortcut the user deleted would otherwise reappear. The marker file is
+    // created by the user, never by the plugin.
+    ...(fs.existsSync(path.join(STATE_ROOT, "no-shortcuts.flag")) ? ["-SkipShortcuts"] : []),
   ], 180000);
   log(`bootstrap: ${result?.ok ? "ok" : "failed"} ${result?.error || JSON.stringify(result?.steps || {})}`);
   if (result?.ok) {

@@ -38,6 +38,12 @@ Then launch Codex **from the desktop shortcut** the plugin creates — it is the
 only entry point that passes the debugging port the injector needs. Open the page
 from magpie's Plugins group.
 
+The shortcut is written as `Codex.lnk` on the Desktop and in the Start Menu, with
+`wscript.exe` running `launch-codex-hidden.vbs` (no console flash) and the icon
+taken from your own Codex install. Bootstrap re-runs every few hours, so a deleted
+shortcut comes back; create `%LOCALAPPDATA%\CodexDreamSkin\no-shortcuts.flag` to
+stop that.
+
 ## Theme market
 
 The catalog comes from **https://dreamskin.cc** (/gallery to browse, /studio to author,

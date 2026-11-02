@@ -50,6 +50,21 @@ magpie plugin on codex-dream-skin
 
 原版开始菜单入口不经过启动器，没有 CDP 参数，皮肤挂不上去。
 
+快捷方式是这样建出来的：
+
+| 项 | 值 |
+| --- | --- |
+| 位置 | `桌面\Codex.lnk` + `开始菜单\程序\Codex.lnk` |
+| 目标 | `wscript.exe "<%LOCALAPPDATA%>\CodexDreamSkin\launch-codex-hidden.vbs"`（无控制台闪窗） |
+| 图标 | 从你自己的 Codex 安装里取 `chatgpt-tray-light.ico`，存到状态根 |
+| 起始位置 | 状态根 |
+
+bootstrap 每 6 小时会重跑一次，所以**删掉的图标会自己回来**。不想让它建：
+
+```powershell
+New-Item "C:\Users\hp\AppData\Local\CodexDreamSkin\no-shortcuts.flag"
+```
+
 ### 4. 打开页面
 
 magpie 窗口的 Plugins 分组里点「Codex 梦境皮肤」。
