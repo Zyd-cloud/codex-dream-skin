@@ -1,0 +1,14 @@
+# Generated at runtime — never commit.
+page/state.js
+page/state.js.tmp
+page/previews/
+
+# Bootstrap copies the icon out of the user's own Codex install into
+# %LOCALAPPDATA%. It is OpenAI artwork and must not be redistributed here.
+launcher/*.ico
+
+# Build/test leftovers
+node_modules/
+*.log
+.DS_Store
+Thumbs.db

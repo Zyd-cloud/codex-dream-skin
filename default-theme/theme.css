@@ -1,0 +1,15 @@
+:root[data-dream-skin="active"] {
+  --ds-accent: #c9a06a;
+  --ds-accent-soft: rgba(201, 160, 106, 0.24);
+  --ds-surface: rgba(16, 18, 24, 0.72);
+  --ds-surface-strong: rgba(18, 21, 28, 0.88);
+  --ds-line: rgba(230, 223, 210, 0.16);
+}
+
+html[data-dream-skin="active"] [data-ds-part="composer"] {
+  border: 1px solid var(--ds-line);
+}
+
+html[data-dream-skin="active"] [data-ds-part="sidebar"] {
+  backdrop-filter: blur(18px) saturate(120%);
+}

@@ -1,0 +1,18 @@
+* text=auto
+
+*.mjs  text eol=lf
+*.js   text eol=lf
+*.json text eol=lf
+*.css  text eol=lf
+*.html text eol=lf
+*.md   text eol=lf
+*.vbs  text eol=crlf
+
+# theme-windows.ps1 ships with a UTF-8 BOM on purpose (PowerShell 5.1 reads a
+# BOM-less file as the ANSI codepage, which mangles the Chinese strings inside).
+# Marking everything else unmarked keeps that difference visible.
+*.ps1  text eol=lf
+
+*.png  binary
+*.jpg  binary
+*.ico  binary

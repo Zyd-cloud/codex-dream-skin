@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Codex 梦境皮肤</title>
+<link rel="stylesheet" href="style.css">
+<script src="_magpie/bridge.js"></script>
+<script src="app.js" defer></script>
+</head>
+<body>
+<header class="bar">
+  <div>
+    <h1>Codex 梦境皮肤</h1>
+    <p class="sub" id="subtitle">正在读取状态…</p>
+  </div>
+  <div class="actions">
+    <button type="button" id="btn-apply">应用皮肤</button>
+    <button type="button" id="btn-original">恢复官方外观</button>
+  </div>
+</header>
+
+<section class="status" id="status" hidden>
+  <span class="chip" id="chip-skin"></span>
+  <span class="chip" id="chip-codex"></span>
+  <span class="chip" id="chip-injector"></span>
+  <span class="chip" id="chip-active"></span>
+</section>
+
+<section>
+  <div class="section-head">
+    <h2>本地主题</h2>
+    <button type="button" class="link" id="btn-refresh">刷新</button>
+  </div>
+  <div class="grid" id="themes"></div>
+  <p class="empty" id="themes-empty" hidden>还没有任何主题。</p>
+</section>
+
+<section>
+  <div class="section-head">
+    <h2>主题市场</h2>
+    <button type="button" class="link" id="btn-market">加载市场</button>
+  </div>
+  <p class="hint" id="market-hint">来自 dreamskin.cc 的社区主题（800+），点击安装即下载并应用。</p>
+  <div class="market-tools" id="market-tools" hidden>
+    <input type="search" id="market-search" placeholder="按名称或作者筛选…" autocomplete="off">
+  </div>
+  <div class="grid" id="market"></div>
+  <div class="more" id="market-more" hidden>
+    <button type="button" class="link" id="btn-more">显示更多</button>
+  </div>
+</section>
+
+<p class="toast" id="toast" hidden></p>
+</body>
+</html>

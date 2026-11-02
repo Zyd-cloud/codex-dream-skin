@@ -1,0 +1,47 @@
+{
+  "name": "codex-dream-skin",
+  "version": "1.0.0",
+  "description": "Wallpaper themes for Codex, as a magpie plugin: bootstraps a skin engine, keeps it attached, and manages themes — local and from the dreamskin.cc community market — from a page inside magpie.",
+  "license": "AGPL-3.0-only",
+  "type": "module",
+  "main": "./index.mjs",
+  "files": [
+    "index.mjs",
+    "worker.mjs",
+    "engine",
+    "launcher",
+    "default-theme",
+    "page",
+    "THIRD_PARTY.md",
+    "README.md",
+    "README.en.md"
+  ],
+  "keywords": [
+    "magpie",
+    "magpie-plugin",
+    "codex",
+    "chatgpt",
+    "dream-skin",
+    "theme",
+    "wallpaper",
+    "windows"
+  ],
+  "os": [
+    "win32"
+  ],
+  "magpie": {
+    "page": {
+      "title": "Codex Dream Skin",
+      "titles": {
+        "zh": "Codex 梦境皮肤",
+        "zh-TW": "Codex 夢境皮膚"
+      },
+      "file": "page/index.html",
+      "icon": "page/icon.svg"
+    },
+    "permissions": [],
+    "options": {
+      "request": {}
+    }
+  }
+}

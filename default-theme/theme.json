@@ -1,0 +1,34 @@
+{
+    "schemaVersion":  1,
+    "id":  "dream-skin-default",
+    "name":  "Dream Skin Default",
+    "brandSubtitle":  "CODEX DREAM SKIN",
+    "tagline":  "A quiet workspace, your own wallpaper.",
+    "projectPrefix":  "Project · ",
+    "projectLabel":  "Select a project",
+    "statusText":  "DREAM SKIN ONLINE",
+    "quote":  "MAKE SOMETHING WONDERFUL",
+    "image":  "background.jpg",
+    "appearance":  "dark",
+    "art":  {
+                "focusX":  0.5,
+                "focusY":  0.5,
+                "safeArea":  "none",
+                "taskMode":  "ambient"
+            },
+    "colors":  {
+                   "background":  "#101218",
+                   "panel":  "#181b24",
+                   "panelAlt":  "#21252f",
+                   "accent":  "#8b95b8",
+                   "accentAlt":  "#c9a06a",
+                   "secondary":  "#6f7a99",
+                   "highlight":  "#e6dfd2",
+                   "text":  "#eceef3",
+                   "muted":  "#9aa0b0",
+                   "line":  "#2c313d"
+               },
+    "palette":  {
+
+                }
+}
