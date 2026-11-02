@@ -1,11 +1,15 @@
 # Codex Dream Skin · magpie 插件
 
+<p align="center">
+  <img src="./docs/screenshot.png" alt="Codex Dream Skin 在 magpie 里的管理界面：本地主题网格与社区市场" width="860">
+</p>
+
+<p align="center"><sub>装好后 magpie 侧栏里的界面 —— 14 个本地主题，默认周青眉，右侧是社区市场</sub></p>
+
 给 Codex 换壁纸皮肤，做成 [magpie](https://github.com/yetone/magpie) 插件：
 装好后自带引擎、自动建快捷方式、**预置 14 个主题（默认周青眉）**、在 magpie 侧栏里管理，还能从社区市场挑。
 
 > English: [README.en.md](./README.en.md)
-
-![截图](./docs/screenshot.png)
 
 ## 能做什么
 

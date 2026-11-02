@@ -1,12 +1,16 @@
 # Codex Dream Skin · a magpie plugin
 
+<p align="center">
+  <img src="./docs/screenshot.png" alt="Codex Dream Skin inside magpie: the local theme grid and the community market" width="860">
+</p>
+
+<p align="center"><sub>The page inside magpie — 14 bundled themes, 周青眉 active by default, community market on the right</sub></p>
+
 Wallpaper themes for Codex, packaged as a [magpie](https://github.com/yetone/magpie)
 plugin: it bootstraps its own skin engine, creates the launcher shortcut, and
 manages themes — local and from the community market — from a page inside magpie.
 
 > 中文说明: [README.md](./README.md)
-
-![screenshot](./docs/screenshot.png)
 
 ## What it does
 
