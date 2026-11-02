@@ -437,6 +437,7 @@ function bootstrap() {
     "-StateRoot", STATE_ROOT,
     "-PreviewDir", PREVIEW_DIR,
     "-ThemeLibrary", path.join(ROOT, "themes"),
+    "-DefaultThemeId", "z-hou-qingmei",
     "-LauncherDir", path.join(ROOT, "launcher"),
     "-Port", String(PORT),
     // Opting out has to be sticky: bootstrap re-runs every few hours, so a

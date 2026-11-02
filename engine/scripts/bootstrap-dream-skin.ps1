@@ -13,6 +13,9 @@ param(
   [string]$StateRoot = (Join-Path $env:LOCALAPPDATA 'CodexDreamSkin'),
   [string]$PreviewDir,
   [string]$ThemeLibrary,
+  # Theme to activate right after the bundled library is seeded. Falls back to
+  # whatever the engine created if the id is not among the bundled themes.
+  [string]$DefaultThemeId = 'z-hou-qingmei',
   [string]$LauncherDir,
   # Written to settings.json so the shortcut path (which carries no arguments)
   # launches Codex on the same port the plugin watches.
@@ -63,7 +66,7 @@ try {
       $deployed = Join-Path $engineTarget 'scripts\bootstrap-dream-skin.ps1'
       if (Test-Path -LiteralPath $deployed) {
         $inner = & $deployed -EngineRoot $engineTarget -StateRoot $StateRoot -PreviewDir $PreviewDir `
-          -ThemeLibrary $ThemeLibrary -LauncherDir $LauncherDir -Port $Port -SkipShortcuts:$SkipShortcuts
+          -ThemeLibrary $ThemeLibrary -DefaultThemeId $DefaultThemeId -LauncherDir $LauncherDir -Port $Port -SkipShortcuts:$SkipShortcuts
         Write-Output ($inner | Select-Object -Last 1)
         exit 0
       }
@@ -111,11 +114,25 @@ try {
 
   # 4. Make sure something is active.
   $activeJson = Join-Path $paths.Active 'theme.json'
+  $justSeeded = ($steps.seededThemes -as [int]) -gt 0
   if (-not (Test-Path -LiteralPath $activeJson) -and $saved.Count -gt 0) {
     $null = Use-DreamSkinSavedTheme -ThemeDirectory $saved[0].Path -StateRoot $StateRoot
     $steps.active = "$($saved[0].Id)"
   } elseif (Test-Path -LiteralPath $activeJson) {
     try { $steps.active = "$((Get-Content -LiteralPath $activeJson -Raw -Encoding UTF8 | ConvertFrom-Json).id)" } catch {}
+  }
+
+  # Pick the bundled default theme, but only on the run that seeded the library.
+  # Doing it every pass would drag a user who chose another theme back to this
+  # one every few hours.
+  if ($justSeeded -and $DefaultThemeId) {
+    $preferred = $saved | Where-Object { "$($_.Id)" -eq $DefaultThemeId } | Select-Object -First 1
+    if ($preferred) {
+      try {
+        $null = Use-DreamSkinSavedTheme -ThemeDirectory $preferred.Path -StateRoot $StateRoot
+        $steps.active = "$($preferred.Id)"
+      } catch {}
+    }
   }
 
   # 5. Shortcuts, so the CDP flag is present from the first launch.
