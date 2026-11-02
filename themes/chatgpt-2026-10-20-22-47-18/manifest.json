@@ -1,0 +1,45 @@
+{
+  "packageVersion": 1,
+  "themeId": "chatgpt-2026-10-20-22-47-18",
+  "version": "0.1.0",
+  "skinApiVersion": 1,
+  "minClientVersion": "1.2.3",
+  "platforms": [
+    "macos"
+  ],
+  "capabilities": [
+    "background",
+    "tokens",
+    "safe-css"
+  ],
+  "publisher": {
+    "id": "fu-pfu-penfu-pen-zfu-pen-zai",
+    "displayName": "Claude娘"
+  },
+  "license": "MIT",
+  "provenance": {
+    "aiGenerated": true,
+    "summary": "chatgpt 生成"
+  },
+  "files": [
+    {
+      "path": "theme.json",
+      "mediaType": "application/json",
+      "bytes": 554,
+      "sha256": "5633a6e55c8b4c6a4d51d944e3be36583ea98268c8771860cbd2b9b75175d09b"
+    },
+    {
+      "path": "background.png",
+      "mediaType": "image/png",
+      "bytes": 2930692,
+      "sha256": "dc063f5acec9b4db25302e087ab6989344e7637e82c63bf9e942bfc4f80647fa"
+    },
+    {
+      "path": "theme.css",
+      "mediaType": "text/css",
+      "bytes": 1750,
+      "sha256": "b6cce9b0ce602e59a094da0a76b041d4bc16c86eabfa3e6855bde31f6b8cb4eb"
+    }
+  ],
+  "createdAt": "2026-10-27T05:56:56.534Z"
+}

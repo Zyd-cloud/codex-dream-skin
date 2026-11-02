@@ -1,0 +1,46 @@
+{
+  "packageVersion": 1,
+  "themeId": "renminwansui",
+  "version": "0.1.0",
+  "skinApiVersion": 1,
+  "minClientVersion": "0.1.0",
+  "platforms": [
+    "windows",
+    "macos"
+  ],
+  "capabilities": [
+    "background",
+    "tokens",
+    "safe-css"
+  ],
+  "publisher": {
+    "id": "liang-xiaomo",
+    "displayName": "梁小莫-"
+  },
+  "license": "1",
+  "provenance": {
+    "aiGenerated": false,
+    "summary": "图片来源于网络"
+  },
+  "files": [
+    {
+      "path": "theme.json",
+      "mediaType": "application/json",
+      "bytes": 524,
+      "sha256": "e4cebd91531ccd4e087358cccf92e49642568594976d8a7f20be81b2eb2fcb05"
+    },
+    {
+      "path": "background.jpg",
+      "mediaType": "image/jpeg",
+      "bytes": 64519,
+      "sha256": "0c52d3752d6394043ff7bb7f8900dd696d3c519c86f0acc9fd028daba200c6bc"
+    },
+    {
+      "path": "theme.css",
+      "mediaType": "text/css",
+      "bytes": 1185,
+      "sha256": "e8c2f742e7093d856123aaa7907f2065ce84b85c4e323afae019c84816599ef2"
+    }
+  ],
+  "createdAt": "2026-09-12T08:08:35.915Z"
+}

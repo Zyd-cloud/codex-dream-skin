@@ -10,9 +10,10 @@
     "worker.mjs",
     "engine",
     "launcher",
-    "default-theme",
+    "themes",
     "page",
     "THIRD_PARTY.md",
+    "themes/PROVENANCE.md",
     "README.md",
     "README.en.md"
   ],

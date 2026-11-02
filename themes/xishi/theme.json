@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "xishi",
+  "name": "西施",
+  "image": "background.png",
+  "appearance": "auto",
+  "art": {
+    "focusX": 0,
+    "focusY": 0.3,
+    "safeArea": "none",
+    "taskMode": "full"
+  },
+  "colors": {
+    "background": "rgba(255, 255, 255, 0)",
+    "panel": "rgba(232, 227, 231, 0)",
+    "panelAlt": "rgba(255, 255, 255, 0.40)",
+    "accent": "#733285",
+    "accentAlt": "#59759b",
+    "secondary": "#af7777",
+    "highlight": "#4e6687",
+    "text": "#1c1c1c",
+    "muted": "#720808",
+    "line": "#a9f4fe"
+  }
+}

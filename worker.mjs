@@ -436,7 +436,7 @@ function bootstrap() {
     "-EngineRoot", ENGINE,
     "-StateRoot", STATE_ROOT,
     "-PreviewDir", PREVIEW_DIR,
-    "-DefaultThemeSource", path.join(ROOT, "default-theme"),
+    "-ThemeLibrary", path.join(ROOT, "themes"),
     "-LauncherDir", path.join(ROOT, "launcher"),
     "-Port", String(PORT),
   ], 180000);

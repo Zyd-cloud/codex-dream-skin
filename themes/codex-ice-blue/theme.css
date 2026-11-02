@@ -1,0 +1,26 @@
+[data-ds-part="root"] {
+  color: var(--ds-theme-color-text);
+}
+
+[data-ds-part="sidebar"] {
+  color: var(--ds-theme-color-text);
+  background-color: var(--ds-theme-color-panel);
+  border-color: var(--ds-theme-color-line);
+}
+
+[data-ds-part="composer"] {
+  color: var(--ds-theme-color-text);
+  background-color: var(--ds-theme-color-panel);
+  border-color: var(--ds-theme-color-line);
+  border-radius: var(--ds-theme-surface-radius);
+}
+
+[data-ds-part="dialog"] {
+  color: var(--ds-theme-color-text);
+  background-color: var(--ds-theme-color-panel-alt);
+  border-color: var(--ds-theme-color-line);
+}
+
+[data-ds-part="composer"]:focus-visible {
+  border-color: var(--ds-theme-color-accent);
+}

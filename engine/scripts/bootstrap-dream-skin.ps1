@@ -12,7 +12,7 @@ param(
   [Parameter(Mandatory = $true)][string]$EngineRoot,
   [string]$StateRoot = (Join-Path $env:LOCALAPPDATA 'CodexDreamSkin'),
   [string]$PreviewDir,
-  [string]$DefaultThemeSource,
+  [string]$ThemeLibrary,
   [string]$LauncherDir,
   # Written to settings.json so the shortcut path (which carries no arguments)
   # launches Codex on the same port the plugin watches.
@@ -63,7 +63,7 @@ try {
       $deployed = Join-Path $engineTarget 'scripts\bootstrap-dream-skin.ps1'
       if (Test-Path -LiteralPath $deployed) {
         $inner = & $deployed -EngineRoot $engineTarget -StateRoot $StateRoot -PreviewDir $PreviewDir `
-          -DefaultThemeSource $DefaultThemeSource -LauncherDir $LauncherDir -Port $Port -SkipShortcuts:$SkipShortcuts
+          -ThemeLibrary $ThemeLibrary -LauncherDir $LauncherDir -Port $Port -SkipShortcuts:$SkipShortcuts
         Write-Output ($inner | Select-Object -Last 1)
         exit 0
       }
@@ -74,31 +74,38 @@ try {
     $steps.engine = 'present'
   }
 
-  # 3. Theme store + a default theme so switching has something to offer.
+  # 3. Theme store, seeded from the bundled library.
   $paths = Initialize-DreamSkinThemeStore -SkillRoot $EngineRoot -StateRoot $StateRoot
   $steps.store = 'ready'
 
   $saved = @(Get-DreamSkinSavedThemes -StateRoot $StateRoot -SkipImageMetadata)
   if ($saved.Count -eq 0) {
-    $source = $DefaultThemeSource
-    if (-not $source -or -not (Test-Path -LiteralPath $source -PathType Container)) {
-      $source = Join-Path $EngineRoot 'default-theme'
+    # Seed every bundled theme, not just one, so a fresh install opens with a
+    # library to browse instead of a single card. Each source folder has to carry
+    # its own theme.json; anything else in the directory is ignored.
+    $library = $ThemeLibrary
+    if (-not $library -or -not (Test-Path -LiteralPath $library -PathType Container)) {
+      $library = Join-Path (Split-Path $EngineRoot -Parent) 'themes'
     }
-    if (Test-Path -LiteralPath (Join-Path $source 'theme.json') -PathType Leaf) {
-      $id = 'dream-skin-original'
-      try {
-        $id = "$((Get-Content -LiteralPath (Join-Path $source 'theme.json') -Raw -Encoding UTF8 | ConvertFrom-Json).id)"
-      } catch {}
-      if (-not $id) { $id = 'dream-skin-original' }
-      $target = Join-Path $paths.Saved $id
-      if (-not (Test-Path -LiteralPath $target)) {
-        New-Item -ItemType Directory -Force -Path $target | Out-Null
-        Copy-Item -Path (Join-Path $source '*') -Destination $target -Recurse -Force
-        $steps.defaultTheme = $id
+    $seeded = 0
+    if (Test-Path -LiteralPath $library -PathType Container) {
+      foreach ($source in (Get-ChildItem -LiteralPath $library -Directory -ErrorAction SilentlyContinue)) {
+        if (-not (Test-Path -LiteralPath (Join-Path $source.FullName 'theme.json') -PathType Leaf)) { continue }
+        $id = $source.Name
+        try {
+          $declared = "$((Get-Content -LiteralPath (Join-Path $source.FullName 'theme.json') -Raw -Encoding UTF8 | ConvertFrom-Json).id)"
+          if ($declared) { $id = $declared }
+        } catch {}
+        $target = Join-Path $paths.Saved $id
+        if (Test-Path -LiteralPath $target) { continue }
+        try {
+          New-Item -ItemType Directory -Force -Path $target | Out-Null
+          Copy-Item -Path (Join-Path $source.FullName '*') -Destination $target -Recurse -Force
+          $seeded += 1
+        } catch {}
       }
-    } else {
-      $steps.defaultTheme = 'none-bundled'
     }
+    $steps.seededThemes = $seeded
     $saved = @(Get-DreamSkinSavedThemes -StateRoot $StateRoot -SkipImageMetadata)
   }
 

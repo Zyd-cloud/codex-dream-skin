@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "firefly-sunny-sea-20261027",
+  "name": "流萤·与你晴海",
+  "brandSubtitle": "FIREFLY · A SUNNY SEA WITH YOU",
+  "tagline": "海风正好，我们再待一会儿吧。",
+  "projectPrefix": "选择项目 · ",
+  "projectLabel": "选择项目",
+  "statusText": "流萤·与你晴海",
+  "quote": "海风正好，我们再待一会儿吧。",
+  "promoTitle": "流萤·与你晴海",
+  "promoSub": "FIREFLY · A SUNNY SEA WITH YOU",
+  "image": "background.png",
+  "appearance": "light",
+  "art": {
+    "focusX": 0.73,
+    "focusY": 0.48,
+    "safeArea": "left",
+    "taskMode": "full"
+  },
+  "colors": {
+    "background": "rgba(225, 245, 247, 0.12)",
+    "panel": "rgba(225, 245, 247, 0.50)",
+    "panelAlt": "rgba(237, 228, 247, 0.76)",
+    "accent": "#716092",
+    "accentAlt": "#976881",
+    "secondary": "#216F79",
+    "highlight": "#96634E",
+    "text": "#24566D",
+    "muted": "#506981",
+    "line": "rgba(68, 130, 153, 0.24)"
+  }
+}

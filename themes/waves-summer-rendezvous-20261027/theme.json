@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "waves-summer-rendezvous-20261027",
+  "name": "浪花赴约",
+  "brandSubtitle": "SUMMER PARTY · RENDEZVOUS BY THE WAVES",
+  "tagline": "循着海风来吧，我们在浪花与阳光之间，为你留好了位置。",
+  "projectPrefix": "选择项目 · ",
+  "projectLabel": "选择项目",
+  "statusText": "浪花赴约",
+  "quote": "循着海风来吧，我们在浪花与阳光之间，为你留好了位置。",
+  "promoTitle": "浪花赴约",
+  "promoSub": "SUMMER PARTY · RENDEZVOUS BY THE WAVES",
+  "image": "background.png",
+  "appearance": "light",
+  "art": {
+    "focusX": 0.56,
+    "focusY": 0.48,
+    "safeArea": "left",
+    "taskMode": "full"
+  },
+  "colors": {
+    "background": "rgba(225, 245, 247, 0.12)",
+    "panel": "rgba(225, 245, 247, 0.50)",
+    "panelAlt": "rgba(237, 228, 247, 0.82)",
+    "accent": "#78519A",
+    "accentAlt": "#A24E72",
+    "secondary": "#137588",
+    "highlight": "#A24E46",
+    "text": "#18556B",
+    "muted": "#496B87",
+    "line": "rgba(68, 130, 153, 0.24)"
+  }
+}

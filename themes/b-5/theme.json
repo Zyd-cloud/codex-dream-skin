@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "b-5",
+  "name": "慵懒温存",
+  "brandSubtitle": "CODEX DREAM SKIN",
+  "tagline": "把柔光与玫瑰带进今天的工作台。",
+  "projectPrefix": "选择项目 · ",
+  "projectLabel": "◉  选择项目",
+  "statusText": "DREAM SKIN ONLINE",
+  "quote": "MAKE SOMETHING WONDERFUL",
+  "colors": {
+    "background": "#141313",
+    "panel": "#1e1d1d",
+    "panelAlt": "#2b2a29",
+    "accent": "#d4b2a8",
+    "accentAlt": "#dabdb4",
+    "secondary": "#d6bfb8",
+    "highlight": "#dfc5be",
+    "text": "#f0f0ef",
+    "muted": "#949393",
+    "line": "#403f3f"
+  },
+  "image": "image.jpg",
+  "appearance": "auto",
+  "art": {
+    "focusX": 0.5,
+    "focusY": 0.5,
+    "safeArea": "none",
+    "taskMode": "ambient"
+  },
+  "palette": {}
+}

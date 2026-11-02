@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "z-hou-qingmei",
+  "name": "周青眉",
+  "brandSubtitle": "CODEX DREAM SKIN",
+  "tagline": "把柔光与玫瑰带进今天的工作台。",
+  "projectPrefix": "选择项目 · ",
+  "projectLabel": "◉  选择项目",
+  "statusText": "DREAM SKIN ONLINE",
+  "quote": "MAKE SOMETHING WONDERFUL",
+  "colors": {
+    "background": "#101014",
+    "panel": "#19151b",
+    "panelAlt": "#251b24",
+    "accent": "#c85a64",
+    "accentAlt": "#f0a07c",
+    "secondary": "#7d8fcb",
+    "highlight": "#f8e6e1",
+    "text": "#f7f1ef",
+    "muted": "#c1b4b9",
+    "line": "#634653"
+  },
+  "image": "background.png",
+  "appearance": "dark",
+  "art": {
+    "focusX": 0.67,
+    "focusY": 0.46,
+    "safeArea": "none",
+    "taskMode": "full"
+  },
+  "palette": {}
+}

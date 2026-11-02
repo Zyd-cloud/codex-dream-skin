@@ -1,0 +1,46 @@
+{
+  "packageVersion": 1,
+  "themeId": "z-hou-qingmei",
+  "version": "1.0.0",
+  "skinApiVersion": 1,
+  "minClientVersion": "1.0.0",
+  "platforms": [
+    "macos",
+    "windows"
+  ],
+  "capabilities": [
+    "background",
+    "tokens",
+    "safe-css"
+  ],
+  "publisher": {
+    "id": "linyan",
+    "displayName": "Lin Yan"
+  },
+  "license": "All Rights Reserved",
+  "provenance": {
+    "aiGenerated": false,
+    "summary": "User-provided local background image, packaged without modification."
+  },
+  "files": [
+    {
+      "path": "theme.json",
+      "mediaType": "application/json",
+      "bytes": 808,
+      "sha256": "c75dde737f0e9a677ff07467a1ae3b10047da1f025aba000e38dd47e8f257eeb"
+    },
+    {
+      "path": "background.png",
+      "mediaType": "image/png",
+      "bytes": 2059748,
+      "sha256": "fceac92c86b16e90cf7942990ebfaef27180dc3184916491cf65a1c742be4957"
+    },
+    {
+      "path": "theme.css",
+      "mediaType": "text/css",
+      "bytes": 1660,
+      "sha256": "abfcab3fab12bc136c0bf56ce95c480d4d406f7eaa9bdf05c86a390d2a493bcb"
+    }
+  ],
+  "createdAt": "2026-08-25T08:56:16.825Z"
+}

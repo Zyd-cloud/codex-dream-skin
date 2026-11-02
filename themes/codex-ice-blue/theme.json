@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "codex-ice-blue",
+  "name": "Codex · 冰蓝矩阵",
+  "image": "background.png",
+  "appearance": "dark",
+  "art": {
+    "focusX": 0.5,
+    "focusY": 0.5,
+    "safeArea": "none",
+    "taskMode": "ambient"
+  },
+  "colors": {
+    "background": "#121314",
+    "panel": "#1c1d1f",
+    "panelAlt": "#272a2d",
+    "accent": "#16a9ee",
+    "accentAlt": "#37b5f0",
+    "secondary": "#3ca8da",
+    "highlight": "#50bff2",
+    "text": "#eff0f1",
+    "muted": "#929394",
+    "line": "#3e3f40"
+  }
+}

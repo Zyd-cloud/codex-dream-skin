@@ -1,0 +1,46 @@
+{
+  "packageVersion": 1,
+  "themeId": "firefly-sunny-sea-20261027",
+  "version": "1.0.0",
+  "skinApiVersion": 1,
+  "minClientVersion": "1.5.0",
+  "platforms": [
+    "macos",
+    "windows"
+  ],
+  "capabilities": [
+    "background",
+    "tokens",
+    "safe-css"
+  ],
+  "publisher": {
+    "id": "mojianrong",
+    "displayName": "莫建荣"
+  },
+  "license": "Personal Use",
+  "provenance": {
+    "aiGenerated": true,
+    "summary": "崩坏：星穹铁道流萤海边同人主题。背景经 AI 生成并经用户确认；角色设定归原权利方所有。主题文案及界面配色为原创设计。"
+  },
+  "files": [
+    {
+      "path": "theme.json",
+      "mediaType": "application/json",
+      "bytes": 974,
+      "sha256": "f01f5d592d8592b34291d5b5fb75c900bd12e95a9eacddcb0ab8a6a6ffa92141"
+    },
+    {
+      "path": "background.png",
+      "mediaType": "image/png",
+      "bytes": 2447186,
+      "sha256": "d66ecfb13fcbb11b95e527a53d39e8b634a43c140ceb9ac796d8a84f6905a64e"
+    },
+    {
+      "path": "theme.css",
+      "mediaType": "text/css",
+      "bytes": 1341,
+      "sha256": "91d258514040e130e05caba0e6ecbd5597d8c1a2d99ab40f9813f88b4f64b304"
+    }
+  ],
+  "createdAt": "2026-10-27T13:49:38.583Z"
+}

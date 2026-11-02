@@ -1,0 +1,55 @@
+[data-ds-part="root"] {
+  color: #18556B;
+  font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+}
+[data-ds-part="sidebar"] {
+  background-color: rgba(225, 245, 247, 0.56);
+  color: #18556B;
+  border-right-color: rgba(68, 130, 153, 0.24);
+}
+[data-ds-part="header"] {
+  background-color: rgba(225, 245, 247, 0.25);
+  color: #78519A;
+}
+[data-ds-part="main"] {
+  background-color: rgba(225, 245, 247, 0.06);
+  color: #18556B;
+}
+[data-ds-part="home"] {
+  background-color: rgba(225, 245, 247, 0.06);
+  color: #18556B;
+}
+[data-ds-part="home-hero"] {
+  color: #78519A;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 1px;
+}
+[data-ds-part="message"] {
+  background-color: rgba(225, 245, 247, 0.50);
+  color: #18556B;
+  border-radius: 16px;
+  border-color: rgba(68, 130, 153, 0.16);
+  line-height: 1.65;
+}
+[data-ds-part="composer"] {
+  background-color: rgba(225, 245, 247, 0.54);
+  color: #18556B;
+  border-color: rgba(68, 130, 153, 0.32);
+  border-radius: 20px;
+}
+[data-ds-part="composer-toolbar"] {
+  color: #496B87;
+}
+[data-ds-part="dialog"] {
+  background-color: rgba(225, 245, 247, 0.90);
+  color: #18556B;
+  border-color: rgba(68, 130, 153, 0.28);
+  border-radius: 18px;
+}
+[data-ds-part="project-list"] {
+  background-color: rgba(237, 228, 247, 0.82);
+  color: #18556B;
+  border-radius: 16px;
+}

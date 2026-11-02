@@ -1,0 +1,46 @@
+{
+  "packageVersion": 1,
+  "themeId": "waves-summer-rendezvous-20261027",
+  "version": "1.0.0",
+  "skinApiVersion": 1,
+  "minClientVersion": "1.5.0",
+  "platforms": [
+    "macos",
+    "windows"
+  ],
+  "capabilities": [
+    "background",
+    "tokens",
+    "safe-css"
+  ],
+  "publisher": {
+    "id": "mojianrong",
+    "displayName": "莫建荣"
+  },
+  "license": "Personal Use",
+  "provenance": {
+    "aiGenerated": true,
+    "summary": "绝区零五人夏日泳装同人主题。背景经 AI 生成并参考游戏角色及用户提供的泳装立绘修订；角色设定归原权利方所有。主题名、欢迎语及界面配色为原创设计。"
+  },
+  "files": [
+    {
+      "path": "theme.json",
+      "mediaType": "application/json",
+      "bytes": 1044,
+      "sha256": "b8bbd8b58a2d570c0f49a40642738401821902f10c44d6d573266ec0825f54c6"
+    },
+    {
+      "path": "background.png",
+      "mediaType": "image/png",
+      "bytes": 2613751,
+      "sha256": "57073dc1f2f2ad8d74f99a0e316165b5052b310c021c0b8417ee340002890235"
+    },
+    {
+      "path": "theme.css",
+      "mediaType": "text/css",
+      "bytes": 1341,
+      "sha256": "f2857e8a1fd26f05ad571e96a2864dcea99760b578170c23c74b00ae6e3ebdde"
+    }
+  ],
+  "createdAt": "2026-10-27T13:53:37.411Z"
+}

@@ -1,0 +1,79 @@
+/* Codex++ DreamSkin part rules for 周青眉 (z-hou-qingmei).
+   Targets parts through the [data-ds-part] "Skin API" markers exactly like the
+   original Codex++ theme.css.
+
+   The engine's own "immersive" rules bleed the art edge-to-edge with
+   `border:0 / border-radius:0` and a gradient `background`, and their
+   selectors are very specific (html.codex-dream-skin.dream-art-wide:has(...)
+   aside...). To win the cascade for the two parts that must read as cards,
+   those exact selectors are repeated here with an extra attribute selector
+   appended, which is strictly more specific, and background-image is cleared
+   because the engine sets it through the `background` shorthand.
+   Everything else is verbatim from the Codex++ original. */
+
+[data-ds-part="sidebar"],
+html.codex-dream-skin.dream-art-wide:has(main.main-surface.dream-home-shell) aside.app-shell-left-panel[data-ds-part="sidebar"],
+html.codex-dream-skin.dream-art-wide:is(.dream-task-ambient, .dream-task-banner):has(main.main-surface:not(.dream-home-shell)) aside.app-shell-left-panel[data-ds-part="sidebar"] {
+  background-color: var(--ds-theme-color-panel) !important;
+  background-image: none !important;
+  border-color: var(--ds-theme-color-line) !important;
+  border-width: 1px !important;
+  border-style: solid !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.28) !important;
+  transition-property: background-color, border-color, box-shadow;
+  transition-duration: 180ms;
+}
+
+[data-ds-part="header"] {
+  background-color: var(--ds-theme-color-panel-alt);
+  border-color: var(--ds-theme-color-line);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 12px;
+}
+
+[data-ds-part="main"],
+html.codex-dream-skin.dream-art-wide main.main-surface.dream-home-shell[data-ds-part="main"],
+html.codex-dream-skin.dream-art-wide:is(.dream-task-ambient, .dream-task-banner) main.main-surface:not(.dream-home-shell)[data-ds-part="main"] {
+  background-color: var(--ds-theme-color-background) !important;
+  background-image: none !important;
+  border-color: var(--ds-theme-color-line) !important;
+  border-width: 1px !important;
+  border-style: solid !important;
+  border-radius: 12px !important;
+}
+
+[data-ds-part="message"] {
+  background-color: var(--ds-theme-color-panel);
+  border-color: var(--ds-theme-color-line);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+[data-ds-part="composer"] {
+  background-color: var(--ds-theme-color-panel-alt);
+  border-color: var(--ds-theme-color-accent);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.24);
+  transition-property: border-color, box-shadow;
+  transition-duration: 180ms;
+}
+
+[data-ds-part="composer"]:focus-within {
+  border-color: var(--ds-theme-color-accent-alt);
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--ds-theme-color-accent-alt) 22%, transparent);
+}
+
+[data-ds-part="dialog"] {
+  background-color: var(--ds-theme-color-panel-alt);
+  border-color: var(--ds-theme-color-line);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.34);
+}

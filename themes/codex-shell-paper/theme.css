@@ -1,0 +1,91 @@
+[data-ds-part="root"] {
+  color: var(--ds-theme-color-text);
+}
+
+[data-ds-part="sidebar"] {
+  background-color: rgba(235, 228, 211, .72);
+  backdrop-filter: blur(14px);
+  border-right-style: none;
+  box-shadow: none;
+}
+
+[data-ds-part="main"] {
+  background-color: transparent;
+}
+
+[data-ds-part="header"] {
+  background-color: rgba(243, 238, 226, .86);
+  backdrop-filter: blur(8px);
+  border-bottom-color: rgba(43, 38, 32, .14);
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  box-shadow: none;
+}
+
+[data-ds-part="home"] {
+  background-color: transparent;
+}
+
+[data-ds-part="home-hero"] {
+  background-color: transparent;
+  border-style: none;
+  box-shadow: none;
+  color: var(--ds-theme-color-text);
+  letter-spacing: 0;
+}
+
+[data-ds-part="project-list"] {
+  background-color: rgba(251, 248, 241, .92);
+  border-color: rgba(43, 38, 32, .18);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 12px;
+  box-shadow: none;
+  transition-duration: 160ms;
+  transition-property: border-color, background-color;
+}
+
+[data-ds-part="project-list"]:hover {
+  background-color: rgba(251, 248, 241, .98);
+  border-color: var(--ds-theme-color-accent);
+}
+
+[data-ds-part="thread"] {
+  background-color: rgba(248, 244, 235, .88);
+}
+
+[data-ds-part="message"] {
+  background-color: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  line-height: 1.8;
+}
+
+[data-ds-part="composer"] {
+  background-color: #fbf8f1;
+  border-color: rgba(43, 38, 32, .24);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 18px;
+  box-shadow: 0 1px 0 rgba(43, 38, 32, .05);
+  transition-duration: 160ms;
+  transition-property: border-color, box-shadow;
+}
+
+[data-ds-part="composer"]:hover {
+  border-color: rgba(178, 58, 43, .45);
+}
+
+[data-ds-part="composer-toolbar"] {
+  color: var(--ds-theme-color-muted);
+}
+
+[data-ds-part="dialog"] {
+  background-color: #f6f1e6;
+  border-color: rgba(43, 38, 32, .18);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 16px;
+  box-shadow: 0 18px 48px rgba(60, 45, 25, .2);
+  color: var(--ds-theme-color-text);
+}

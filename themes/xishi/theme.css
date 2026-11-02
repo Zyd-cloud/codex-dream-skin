@@ -1,0 +1,64 @@
+[data-ds-part="root"] {
+  background-color: var(--ds-theme-color-background);
+  color: var(--ds-theme-color-text);
+}
+
+[data-ds-part="main"] {
+  background-color: var(--ds-theme-color-background);
+  border-width: 0;
+  border-style: none;
+  box-shadow: -4px 0 18px rgba(27, 42, 63, 0.10);
+}
+
+[data-ds-part="sidebar"] {
+  background-color: rgba(245, 248, 253, 0.60);
+  border-width: 0;
+  border-style: none;
+  border-radius: 16px;
+  box-shadow: 6px 0 24px rgba(31, 44, 60, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(28px) saturate(1.15);
+}
+
+[data-ds-part="home"] {
+  background-color: var(--ds-theme-color-background);
+}
+
+[data-ds-part="home-hero"] {
+  background-color: transparent;
+  color: var(--ds-theme-color-text);
+  border-width: 0;
+  border-style: none;
+  border-radius: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+[data-ds-part="composer"] {
+  background-color: rgba(245, 253, 255, 0.58);
+  color: var(--ds-theme-color-text);
+  border-width: 0;
+  border-style: none;
+  border-radius: 24px;
+  box-shadow: 0 14px 36px rgba(27, 42, 63, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(20px);
+}
+
+[data-ds-part="message"] {
+  background-color: var(--ds-theme-color-panel-alt);
+  color: var(--ds-theme-color-text);
+  border-width: 0;
+  border-style: none;
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(27, 42, 63, 0.20);
+  backdrop-filter: blur(18px);
+}
+
+[data-ds-part="dialog"] {
+  background-color: rgba(255, 255, 255, 0.68);
+  color: var(--ds-theme-color-text);
+  border-width: 0;
+  border-style: none;
+  border-radius: 16px;
+  box-shadow: 0 16px 40px rgba(27, 42, 63, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.58);
+  backdrop-filter: blur(18px);
+}

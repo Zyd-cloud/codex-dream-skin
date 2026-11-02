@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "renminwansui",
+  "name": "中华人民共和国万岁",
+  "image": "background.jpg",
+  "appearance": "auto",
+  "art": {
+    "focusX": 0.5,
+    "focusY": 0.5,
+    "safeArea": "none",
+    "taskMode": "ambient"
+  },
+  "colors": {
+    "background": "#151111",
+    "panel": "#201b1b",
+    "panelAlt": "#2f2626",
+    "accent": "#cb8e2d",
+    "accentAlt": "#d29e4a",
+    "secondary": "#d62d32",
+    "highlight": "#d8aa62",
+    "text": "#f2eeee",
+    "muted": "#959191",
+    "line": "#413d3d"
+  }
+}

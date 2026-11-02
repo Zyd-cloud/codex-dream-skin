@@ -1,0 +1,28 @@
+{
+    "minClientVersion":  "1.0.0",
+    "skinApiVersion":  1,
+    "version":  "1.0.0",
+    "themeId":  "dream-skin-default",
+    "capabilities":  [
+                         "background",
+                         "tokens",
+                         "safe-css"
+                     ],
+    "files":  [
+
+              ],
+    "createdAt":  "2026-11-02T02:30:28.5346474Z",
+    "license":  "AGPL-3.0-only",
+    "platforms":  [
+                      "windows"
+                  ],
+    "publisher":  {
+                      "id":  "codex-dream-skin-plugin",
+                      "displayName":  "Codex Dream Skin plugin"
+                  },
+    "provenance":  {
+                       "summary":  "Generated procedurally for this repository (gradients and arcs); no third-party artwork.",
+                       "aiGenerated":  true
+                   },
+    "packageVersion":  1
+}

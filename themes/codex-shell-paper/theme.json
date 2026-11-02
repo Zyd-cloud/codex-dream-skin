@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "codex-shell-paper",
+  "name": "纸墨",
+  "tagline": "研墨已备，从这里落笔",
+  "projectPrefix": "选择项目 · ",
+  "projectLabel": "选择项目",
+  "image": "background.webp",
+  "appearance": "light",
+  "art": {
+    "focusX": 0.78,
+    "focusY": 0.6,
+    "safeArea": "left",
+    "taskMode": "ambient"
+  },
+  "colors": {
+    "background": "#f3eee2",
+    "panel": "#f8f4eb",
+    "panelAlt": "#ebe4d3",
+    "accent": "#b23a2b",
+    "accentAlt": "#9b2f22",
+    "secondary": "#3c5d78",
+    "highlight": "#8a6116",
+    "text": "#2b2620",
+    "muted": "#6f6553",
+    "line": "rgba(43, 38, 32, .16)"
+  }
+}

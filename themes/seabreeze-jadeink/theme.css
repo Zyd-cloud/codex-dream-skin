@@ -1,0 +1,63 @@
+[data-ds-part="sidebar"] {
+  background-color: rgba(239, 247, 242, 0.94);
+  color: var(--ds-theme-color-text);
+  border-color: var(--ds-theme-color-line);
+  border-width: 1px;
+  border-style: solid;
+  backdrop-filter: blur(20px) saturate(0.8);
+  box-shadow: none;
+}
+
+[data-ds-part="main"] {
+  background-color: rgba(240, 248, 244, 0.02);
+  box-shadow: none;
+}
+
+[data-ds-part="home-hero"] {
+  color: var(--ds-theme-color-text);
+}
+
+[data-ds-part="project-list"] {
+  opacity: 0.78;
+  gap: 12px;
+  box-shadow: none;
+}
+
+[data-ds-part="thread"] {
+  background-color: rgba(242, 249, 245, 0.55);
+  color: var(--ds-theme-color-text);
+  backdrop-filter: blur(10px);
+}
+
+[data-ds-part="message"] {
+  background-color: rgba(245, 250, 247, 0.86);
+  color: var(--ds-theme-color-text);
+  border-radius: 14px;
+  box-shadow: none;
+}
+
+[data-ds-part="composer"] {
+  background-color: rgba(255, 255, 255, 0);
+  color: var(--ds-theme-color-text);
+  border-width: 0;
+  border-radius: 18px;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+[data-ds-part="composer-toolbar"] {
+  color: var(--ds-theme-color-muted);
+  background-color: rgba(255, 255, 255, 0);
+  border-width: 0;
+  box-shadow: none;
+}
+
+[data-ds-part="dialog"] {
+  background-color: rgba(244, 250, 247, 0.98);
+  color: var(--ds-theme-color-text);
+  border-color: var(--ds-theme-color-line);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(38, 70, 56, 0.12);
+}

@@ -1,0 +1,46 @@
+{
+  "packageVersion": 1,
+  "themeId": "xishi",
+  "version": "2.0.0",
+  "skinApiVersion": 1,
+  "minClientVersion": "0.1.5",
+  "platforms": [
+    "windows",
+    "macos"
+  ],
+  "capabilities": [
+    "background",
+    "tokens",
+    "safe-css"
+  ],
+  "publisher": {
+    "id": "Belate",
+    "displayName": "Belate"
+  },
+  "license": "MIT",
+  "provenance": {
+    "aiGenerated": true,
+    "summary": "提示词生成"
+  },
+  "files": [
+    {
+      "path": "theme.json",
+      "mediaType": "application/json",
+      "bytes": 539,
+      "sha256": "72cf25ecf4dc8905538fa0edb37603d4fdddb382e6cc2722c56831d8c41b99a5"
+    },
+    {
+      "path": "background.png",
+      "mediaType": "image/png",
+      "bytes": 2218878,
+      "sha256": "5b674a05c945d728202eb65cfd70d14826295d3742a7929178e17e0b05f192f0"
+    },
+    {
+      "path": "theme.css",
+      "mediaType": "text/css",
+      "bytes": 1720,
+      "sha256": "728d43d1957620d575f33944e169b8ae2e955cf54e318ac7c3056c5919a86820"
+    }
+  ],
+  "createdAt": "2026-10-10T02:40:37.671Z"
+}

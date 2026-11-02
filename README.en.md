@@ -12,6 +12,7 @@ manages themes — local and from the community market — from a page inside ma
 
 - **Real theming**, not a wallpaper pasted behind the UI: sidebar, main surface,
   composer and titlebar all get the theme's treatment.
+- **14 themes included**, so a fresh install opens with a library
 - **Back to stock** with one button — no uninstall, no restart.
 - **Community market** — [dreamskin.cc](https://dreamskin.cc/gallery), the same
   catalog Codex++ uses (800+ themes): search, preview, download, apply.

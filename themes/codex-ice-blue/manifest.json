@@ -1,0 +1,46 @@
+{
+  "packageVersion": 1,
+  "themeId": "codex-ice-blue",
+  "version": "1.0.3",
+  "skinApiVersion": 1,
+  "minClientVersion": "1.5.19",
+  "platforms": [
+    "windows",
+    "macos"
+  ],
+  "capabilities": [
+    "background",
+    "tokens",
+    "safe-css"
+  ],
+  "publisher": {
+    "id": "local-user",
+    "displayName": "Personal Theme"
+  },
+  "license": "All Rights Reserved",
+  "provenance": {
+    "aiGenerated": true,
+    "summary": "用户提供的参考图，经 AI 编辑去除底部抖音标志与号码并补全背景。原始素材再分发授权未核实，仅供本地个人使用。"
+  },
+  "files": [
+    {
+      "path": "theme.json",
+      "mediaType": "application/json",
+      "bytes": 520,
+      "sha256": "8b4abc6cf84f906f1abf0a4a566ac65e4fc4c12aa73acbd036212986064da309"
+    },
+    {
+      "path": "background.png",
+      "mediaType": "image/png",
+      "bytes": 2209899,
+      "sha256": "245c6ed860549d6e1d00303e145ddb643dc830c20aac6d36d71ab83e678dd276"
+    },
+    {
+      "path": "theme.css",
+      "mediaType": "text/css",
+      "bytes": 686,
+      "sha256": "1056e1614f6c69a38c19fac0678dd373abb9ed5aff5b549440f78d16e4c3c6ab"
+    }
+  ],
+  "createdAt": "2026-10-28T02:23:44.615Z"
+}

@@ -1,0 +1,45 @@
+{
+  "packageVersion": 1,
+  "themeId": "seabreeze-jadeink",
+  "version": "0.20.1",
+  "skinApiVersion": 1,
+  "minClientVersion": "1.5.19",
+  "platforms": [
+    "windows"
+  ],
+  "capabilities": [
+    "background",
+    "tokens",
+    "safe-css"
+  ],
+  "publisher": {
+    "id": "Wachyon",
+    "displayName": "Wachyon"
+  },
+  "license": "MIT",
+  "provenance": {
+    "aiGenerated": true,
+    "summary": "抖音看的形象 再用AI regenerate的"
+  },
+  "files": [
+    {
+      "path": "theme.json",
+      "mediaType": "application/json",
+      "bytes": 522,
+      "sha256": "3104b6be737f25d5e0788e7ec5a7bce6a226860441cdba585454daa5b44f5fe9"
+    },
+    {
+      "path": "background.png",
+      "mediaType": "image/png",
+      "bytes": 2799786,
+      "sha256": "d19bd155ef14671207013a5216cc9996a19e782c9e3f2d46cd62b2bbbe1f0b60"
+    },
+    {
+      "path": "theme.css",
+      "mediaType": "text/css",
+      "bytes": 1446,
+      "sha256": "170f822cf893de5005aa06a6e209c6624fe75c929c78b728a4597a8a689605a3"
+    }
+  ],
+  "createdAt": "2026-10-09T06:21:28.951Z"
+}

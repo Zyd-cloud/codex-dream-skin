@@ -1,0 +1,46 @@
+{
+  "packageVersion": 1,
+  "themeId": "codex-shell-paper",
+  "version": "1.0.0",
+  "skinApiVersion": 1,
+  "minClientVersion": "1.5.19",
+  "platforms": [
+    "windows",
+    "macos"
+  ],
+  "capabilities": [
+    "background",
+    "tokens",
+    "safe-css"
+  ],
+  "publisher": {
+    "id": "yoshikitanak-hash",
+    "displayName": "画卷 Huajuan"
+  },
+  "license": "CC-BY-4.0 AND MIT",
+  "provenance": {
+    "aiGenerated": true,
+    "summary": "Procedural vector ink-wash scene (distant mountains, a red sun, birds, a small boat, drifting mist) written as code by Claude Code (AI). Theme design and styling by Claude Code.\nTested on Windows at 2560×1440. macOS has not been tested.\nSource and credits: https://github.com/yoshikitanak-hash/huajuan-skins"
+  },
+  "files": [
+    {
+      "path": "theme.json",
+      "mediaType": "application/json",
+      "bytes": 645,
+      "sha256": "1633d1baa55a3a75c5291d67b8600365183e9d25192fe86e255db47df979b2de"
+    },
+    {
+      "path": "background.webp",
+      "mediaType": "image/webp",
+      "bytes": 1005604,
+      "sha256": "6bc7eec4d75c3195b5936c0c42971fffc0501c75dee09197e825637725dfe624"
+    },
+    {
+      "path": "theme.css",
+      "mediaType": "text/css",
+      "bytes": 2048,
+      "sha256": "4c34e3c324dbef104ae17361e3f94c6298373eaa10ec19bb8acd3422e1ee52ca"
+    }
+  ],
+  "createdAt": "2026-10-06T13:56:46.210Z"
+}

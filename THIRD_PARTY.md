@@ -75,6 +75,24 @@ The two projects are unrelated apart from this one ported helper.
 - `docs/screenshot.png` — the page captured with generated demo data
 - `tests/*`
 
+## Bundled themes
+
+`themes/` ships a 14-theme starter library. Thirteen come from the
+[dreamskin.cc](https://dreamskin.cc/gallery) community market — each with its author,
+version and license recorded, and a link to its own page, in
+[themes/PROVENANCE.md](themes/PROVENANCE.md). The fourteenth,
+`dream-skin-default`, is generated art written for this repository.
+
+The market has no blanket terms: a package's `manifest.json` `license` field is the
+entire statement, and authors fill it in freely (MIT, CC BY, Personal Use, All Rights
+Reserved, and in one case literally `1`). Themes that are not licensed for
+redistribution are listed in `themes/PROVENANCE.md` with the exact folders to delete
+before publishing this repository.
+
+`dream-skin-original` and `glass-vision` have no market record and no
+`manifest.json` — they predate the current package format and their origin is not
+recorded.
+
 ## Deliberately not included
 
 | Excluded | Why |

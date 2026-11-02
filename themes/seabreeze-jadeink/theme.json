@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "seabreeze-jadeink",
+  "name": "海风翡翠_青墨",
+  "image": "background.png",
+  "appearance": "light",
+  "art": {
+    "focusX": 0.5,
+    "focusY": 0.5,
+    "safeArea": "none",
+    "taskMode": "ambient"
+  },
+  "colors": {
+    "background": "#f6f6f6",
+    "panel": "#fefefe",
+    "panelAlt": "#e9eaea",
+    "accent": "#0091ff",
+    "accentAlt": "#0f77c4",
+    "secondary": "#565815",
+    "highlight": "#0d68ab",
+    "text": "#1b1d1d",
+    "muted": "#696a6a",
+    "line": "#d3d3d3"
+  }
+}
