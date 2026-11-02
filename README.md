@@ -1,7 +1,7 @@
 # Codex Dream Skin · magpie 插件
 
 给 Codex 换壁纸皮肤，做成 [magpie](https://github.com/yetone/magpie) 插件：
-装好后自带引擎、自动建快捷方式、**预置 14 个主题**、在 magpie 侧栏里管理，还能从社区市场挑。
+装好后自带引擎、自动建快捷方式、**预置 14 个主题（默认周青眉）**、在 magpie 侧栏里管理，还能从社区市场挑。
 
 > English: [README.en.md](./README.en.md)
 

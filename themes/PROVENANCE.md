@@ -33,6 +33,17 @@ and apply normally; they simply predate the manifest spec the market now expects
 ² `renminwansui`'s license field reads `1` — a value its author typed by hand.
 Treat it as "no usable license statement".
 
+## Default theme
+
+`z-hou-qingmei` is the theme this build activates on a fresh install — see
+`-DefaultThemeId` in `engine/scripts/bootstrap-dream-skin.ps1`, which is
+passed `z-hou-qingmei` by `worker.mjs`. It applies only on the run that seeds
+the library, so a user who later picks another theme is not switched back.
+
+If you remove this folder (it is one of the themes whose license does not permit
+redistribution), also clear `-DefaultThemeId`; bootstrap then leaves the engine's
+own initial theme active and nothing breaks.
+
 ## What this means for redistribution
 
 The market has **no blanket terms**: `/docs` states that `LICENSE.txt` inside a
