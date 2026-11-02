@@ -17,6 +17,9 @@ manages themes — local and from the community market — from a page inside ma
 - **Real theming**, not a wallpaper pasted behind the UI: sidebar, main surface,
   composer and titlebar all get the theme's treatment.
 - **14 themes included** (周青眉 active by default), so a fresh install opens with a library
+- **Edit or delete a theme**: rename it, switch its appearance, task mode, safe area and
+  focus point; a save repaints the theme that is in use right away. Deleting asks for
+  confirmation first, and refuses while the theme is on screen
 - **Back to stock** with one button — no uninstall, no restart.
 - **Community market** — [dreamskin.cc](https://dreamskin.cc/gallery), the same
   catalog Codex++ uses (800+ themes): search, preview, download, apply.

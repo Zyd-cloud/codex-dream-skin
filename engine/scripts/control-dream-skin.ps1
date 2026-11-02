@@ -23,6 +23,14 @@ param(
   [string]$EngineRoot,
   # Same CDP port the plugin decided; the default matches it for a manual run.
   [int]$Port = 9335,
+  # Fields the 'update' action may change. Empty means "leave it alone", so the
+  # caller can send just the one thing the user edited.
+  [string]$Name,
+  [string]$Appearance,
+  [string]$TaskMode,
+  [string]$SafeArea,
+  [string]$FocusX,
+  [string]$FocusY,
   # Fold a full status read into this action's reply, so the caller does not need
   # a second PowerShell run (~1.6 s) just to refresh what it shows the page.
   [switch]$WithStatus
@@ -93,6 +101,11 @@ try {
         directory  = "$($theme.Path)"
         appearance = 'auto'
         taskMode   = 'ambient'
+        safeArea   = 'none'
+        # The edit dialog prefills from these, so they have to be the values the
+        # engine would actually apply, not placeholders.
+        focusX     = 0.5
+        focusY     = 0.5
         image      = ''
         preview    = ''
       }
@@ -103,6 +116,13 @@ try {
           if ($raw.image) { $entry.image = "$($raw.image)" }
           if ($raw.appearance) { $entry.appearance = "$($raw.appearance)" }
           if ($raw.art -and $raw.art.taskMode) { $entry.taskMode = "$($raw.art.taskMode)" }
+          if ($raw.art -and $raw.art.safeArea) { $entry.safeArea = "$($raw.art.safeArea)" }
+          if ($raw.art -and $null -ne $raw.art.focusX) {
+            try { $entry.focusX = [double]$raw.art.focusX } catch {}
+          }
+          if ($raw.art -and $null -ne $raw.art.focusY) {
+            try { $entry.focusY = [double]$raw.art.focusY } catch {}
+          }
           if ($raw.colors) {
             $entry.colors = [ordered]@{
               background = "$($raw.colors.background)"
@@ -279,7 +299,7 @@ try {
   # read-only actions stay unlocked: the page polls status every couple of
   # seconds and must not be refused because some other action is running.
   # ensure-injector uses its own mutex, so this does not fight the supervisor.
-  $mutating = @('switch', 'pause', 'resume', 'install', 'prune', 'refresh-previews')
+  $mutating = @('switch', 'pause', 'resume', 'install', 'delete', 'update', 'prune', 'refresh-previews')
 
   $operationLock = $null
   if ($mutating -contains $Action) {
@@ -313,6 +333,26 @@ try {
     }
   }
 
+  # Resolve a saved theme by id, refusing anything that could point outside the
+# library. The id comes from the page, so it is treated as untrusted input.
+  function Resolve-SavedThemeDirectory {
+    param([Parameter(Mandatory = $true)][string]$Id)
+    if ([string]::IsNullOrWhiteSpace($Id)) { Fail 'themeId is required' }
+    if ($Id -match '[\\/]' -or $Id -eq '.' -or $Id -eq '..') { Fail "invalid theme id: $Id" }
+    # Containment first, on the resolved strings only: Test-DreamSkinThemePathWithin
+    # also demands that every component exists, which would report a plain
+    # "not found" as "invalid id".
+    $rootFull = [System.IO.Path]::GetFullPath($paths.Saved).TrimEnd('\')
+    $full = [System.IO.Path]::GetFullPath((Join-Path $paths.Saved $Id))
+    $inside = $full.Equals($rootFull, [System.StringComparison]::OrdinalIgnoreCase) -or
+      $full.StartsWith($rootFull + '\', [System.StringComparison]::OrdinalIgnoreCase)
+    if (-not $inside) { Fail "invalid theme id: $Id" }
+    if (-not (Test-Path -LiteralPath $full -PathType Container)) { Fail "theme not found: $Id" }
+    # A junction inside the library would let a delete escape it.
+    Assert-DreamSkinNoReparseComponents -Path $full
+    return $full
+  }
+
   try {
     switch ($Action) {
     'status' {
@@ -336,6 +376,96 @@ try {
     'resume' {
       Set-DreamSkinPaused -Paused $false -StateRoot $StateRoot | Out-Null
       Write-Result @{ ok = $true; paused = $false; active = (Get-ActiveThemeId) }
+    }
+    'delete' {
+      $directory = Resolve-SavedThemeDirectory -Id $ThemeId
+      $activeId = Get-ActiveThemeId
+      # Refuse rather than guess: deleting the theme that is on screen would leave
+      # Codex wearing a skin whose files just vanished.
+      if ($activeId -and $activeId -eq $ThemeId) {
+        Fail 'this theme is in use; switch to another theme before deleting it'
+      }
+      Remove-Item -LiteralPath $directory -Recurse -Force -ErrorAction Stop
+      if ($PreviewDir) {
+        $preview = Join-Path $PreviewDir ("{0}.jpg" -f $ThemeId)
+        if (Test-Path -LiteralPath $preview -PathType Leaf) {
+          Remove-Item -LiteralPath $preview -Force -ErrorAction SilentlyContinue
+        }
+      }
+      Write-Result @{ ok = $true; deleted = $ThemeId }
+    }
+    'update' {
+      $directory = Resolve-SavedThemeDirectory -Id $ThemeId
+      $loaded = Read-DreamSkinTheme -ThemeDirectory $directory -SkipImageMetadata
+      # Round-trip through JSON so the object is an editable copy, not the
+      # read-only view Read-DreamSkinTheme hands back.
+      $theme = $loaded.Theme | ConvertTo-Json -Depth 8 | ConvertFrom-Json
+
+      if ($PSBoundParameters.ContainsKey('Name')) {
+        $clean = ("$Name").Trim()
+        if (-not $clean) { Fail 'name must not be empty' }
+        if ($clean.Length -gt 60) { Fail 'name is too long (max 60 characters)' }
+        $theme | Add-Member -NotePropertyName name -NotePropertyValue $clean -Force
+      }
+      if ($PSBoundParameters.ContainsKey('Appearance')) {
+        if (@('auto', 'light', 'dark') -notcontains $Appearance) {
+          Fail 'appearance must be auto, light or dark'
+        }
+        $theme | Add-Member -NotePropertyName appearance -NotePropertyValue $Appearance -Force
+      }
+      if (-not $theme.art) {
+        $theme | Add-Member -NotePropertyName art -NotePropertyValue ([pscustomobject]@{}) -Force
+      }
+      if ($PSBoundParameters.ContainsKey('TaskMode')) {
+        if (@('ambient', 'full', 'off') -notcontains $TaskMode) {
+          Fail 'taskMode must be ambient, full or off'
+        }
+        $theme.art | Add-Member -NotePropertyName taskMode -NotePropertyValue $TaskMode -Force
+      }
+      if ($PSBoundParameters.ContainsKey('SafeArea')) {
+        if (@('left', 'right', 'none') -notcontains $SafeArea) {
+          Fail 'safeArea must be left, right or none'
+        }
+        $theme.art | Add-Member -NotePropertyName safeArea -NotePropertyValue $SafeArea -Force
+      }
+      foreach ($axis in @('FocusX', 'FocusY')) {
+        if (-not $PSBoundParameters.ContainsKey($axis)) { continue }
+        $value = 0.0
+        if (-not [double]::TryParse("$($PSBoundParameters[$axis])", [ref]$value)) {
+          Fail "$axis must be a number between 0 and 1"
+        }
+        if ($value -lt 0 -or $value -gt 1) { Fail "$axis must be between 0 and 1" }
+        $propertyName = if ($axis -eq 'FocusX') { 'focusX' } else { 'focusY' }
+        $theme.art | Add-Member -NotePropertyName $propertyName -NotePropertyValue $value -Force
+      }
+
+      Write-DreamSkinTheme -ThemeDirectory $directory -Theme $theme
+      # Read it back through the validator so a bad edit cannot be left in place.
+      $check = Read-DreamSkinTheme -ThemeDirectory $directory -SkipImageMetadata
+
+      # If this is the theme on screen, repaint it so the edit is visible now
+      # instead of after the next switch. A paused skin stays paused.
+      $applied = $false
+      if ((Get-ActiveThemeId) -eq $ThemeId -and -not (Test-DreamSkinPaused -StateRoot $StateRoot)) {
+        try { $null = Use-DreamSkinSavedTheme -ThemeDirectory $directory -StateRoot $StateRoot; $applied = $true } catch {}
+      }
+      if ($PreviewDir -and $PSBoundParameters.ContainsKey('Name')) {
+        $null = Update-Previews -Directory $PreviewDir
+      }
+
+      Write-Result @{
+        ok       = $true
+        theme    = @{
+          id         = "$($check.Theme.id)"
+          name       = "$($check.Theme.name)"
+          appearance = "$($check.Theme.appearance)"
+          taskMode   = "$($check.Theme.art.taskMode)"
+          safeArea   = "$($check.Theme.art.safeArea)"
+          focusX     = $check.Theme.art.focusX
+          focusY     = $check.Theme.art.focusY
+        }
+        applied  = $applied
+      }
     }
     'refresh-previews' {
       $preview = Update-Previews -Directory $PreviewDir

@@ -37,6 +37,23 @@
     btnOriginal: $("btn-original"),
     btnRefresh: $("btn-refresh"),
     btnMarket: $("btn-market"),
+    editDialog: $("edit-dialog"),
+    editForm: $("edit-form"),
+    editId: $("edit-id"),
+    editName: $("edit-name"),
+    editAppearance: $("edit-appearance"),
+    editTaskMode: $("edit-taskmode"),
+    editSafeArea: $("edit-safearea"),
+    editFocusX: $("edit-focusx"),
+    editFocusY: $("edit-focusy"),
+    editFocusXOut: $("edit-focusx-out"),
+    editFocusYOut: $("edit-focusy-out"),
+    editCancel: $("edit-cancel"),
+    editSave: $("edit-save"),
+    confirmDialog: $("confirm-dialog"),
+    confirmText: $("confirm-text"),
+    confirmCancel: $("confirm-cancel"),
+    confirmOk: $("confirm-ok"),
   };
 
   const MARKET_PAGE = 24;      // cards drawn per batch
@@ -119,7 +136,7 @@
     return true;
   }
 
-  async function sendCommand(action, themeId, expect) {
+  async function sendCommand(action, themeId, expect, extra) {
     if (pending) return;                       // one command at a time
     const id = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 7)}`;
     pending = { id, action, themeId, expect: expect || null, at: Date.now() };
@@ -127,11 +144,15 @@
     const options = await readOptions();
     const request = { id, action };
     if (themeId) request.themeId = themeId;
+    // Only `update` carries a patch, and only the fields the user changed.
+    if (extra && typeof extra === "object") request.patch = extra;
     try {
       await magpie.options.set({ ...options, request });
       toast(action === "pause" ? "正在恢复官方外观…"
         : action === "market-load" ? "正在加载市场…"
         : action === "market-install" ? "正在下载主题…"
+        : action === "delete" ? "正在删除…"
+        : action === "update" ? "正在保存…"
         : "正在切换…");
     } catch (error) {
       pending = null;
@@ -220,8 +241,126 @@
     }
     meta.append(button);
 
+    if (opts.editable) {
+      const tools = document.createElement("div");
+      tools.className = "tools";
+
+      const edit = document.createElement("button");
+      edit.type = "button";
+      edit.className = "tool";
+      edit.textContent = "编辑";
+      edit.title = "改名、外观、取景";
+      edit.disabled = isBusy();
+      edit.addEventListener("click", () => openEdit(theme.id));
+      tools.append(edit);
+
+      const del = document.createElement("button");
+      del.type = "button";
+      del.className = "tool danger";
+      del.textContent = "删除";
+      // The engine refuses to delete the theme that is on screen. Say why on the
+      // button instead of letting the click come back as a failed command.
+      del.disabled = isBusy() || Boolean(opts.active);
+      del.title = opts.active
+        ? "正在使用的主题不能删除，先切换到其他主题"
+        : `删除「${theme.name || theme.id}」`;
+      del.addEventListener("click", () => askDelete(theme.id));
+      tools.append(del);
+
+      meta.append(tools);
+    }
+
     el.append(shot, meta);
     return el;
+  }
+
+  // --- theme editing / deleting -------------------------------------------
+
+  let editingId = null;
+  let deletingId = null;
+
+  function themeById(id) {
+    return (state?.state?.themes || []).find((t) => t.id === id) || null;
+  }
+
+  function syncFocusLabels() {
+    ui.editFocusXOut.textContent = Number(ui.editFocusX.value).toFixed(2);
+    ui.editFocusYOut.textContent = Number(ui.editFocusY.value).toFixed(2);
+  }
+
+  function openEdit(id) {
+    const theme = themeById(id);
+    if (!theme || pending) return;
+    editingId = id;
+    ui.editId.textContent = id;
+    ui.editName.value = theme.name || id;
+    ui.editAppearance.value = theme.appearance || "auto";
+    ui.editTaskMode.value = theme.taskMode || "ambient";
+    ui.editSafeArea.value = theme.safeArea || "none";
+    ui.editFocusX.value = Number.isFinite(theme.focusX) ? theme.focusX : 0.5;
+    ui.editFocusY.value = Number.isFinite(theme.focusY) ? theme.focusY : 0.5;
+    syncFocusLabels();
+    ui.editDialog.showModal();
+  }
+
+  function closeEdit() {
+    editingId = null;
+    if (ui.editDialog.open) ui.editDialog.close();
+  }
+
+  function saveEdit() {
+    if (!editingId || pending) return;
+    const theme = themeById(editingId);
+    const name = ui.editName.value.trim();
+    if (!name) { toast("名称不能为空", true); return; }
+
+    // Send only what changed: the engine leaves every omitted field alone, so a
+    // rename cannot reset the art settings.
+    const patch = {};
+    if (theme && name !== (theme.name || "")) patch.name = name;
+    if (theme && ui.editAppearance.value !== (theme.appearance || "auto")) {
+      patch.appearance = ui.editAppearance.value;
+    }
+    if (theme && ui.editTaskMode.value !== (theme.taskMode || "ambient")) {
+      patch.taskMode = ui.editTaskMode.value;
+    }
+    if (theme && ui.editSafeArea.value !== (theme.safeArea || "none")) {
+      patch.safeArea = ui.editSafeArea.value;
+    }
+    const fx = Number(ui.editFocusX.value);
+    const fy = Number(ui.editFocusY.value);
+    if (theme && Math.abs(fx - (Number.isFinite(theme.focusX) ? theme.focusX : 0.5)) > 0.001) {
+      patch.focusX = fx;
+    }
+    if (theme && Math.abs(fy - (Number.isFinite(theme.focusY) ? theme.focusY : 0.5)) > 0.001) {
+      patch.focusY = fy;
+    }
+
+    if (!Object.keys(patch).length) { closeEdit(); toast("没有改动"); return; }
+    const id = editingId;
+    closeEdit();
+    sendCommand("update", id, null, patch);
+  }
+
+  function askDelete(id) {
+    const theme = themeById(id);
+    if (!theme || pending) return;
+    deletingId = id;
+    ui.confirmText.textContent =
+      `确定删除「${theme.name || id}」吗？主题文件会从本机移除，无法撤销。`;
+    ui.confirmDialog.showModal();
+  }
+
+  function closeConfirm() {
+    deletingId = null;
+    if (ui.confirmDialog.open) ui.confirmDialog.close();
+  }
+
+  function confirmDelete() {
+    if (!deletingId || pending) return;
+    const id = deletingId;
+    closeConfirm();
+    sendCommand("delete", id, null);
   }
 
   function marketView() {
@@ -348,7 +487,11 @@
     ui.btnMarket.disabled = busy;
 
     ui.themes.replaceChildren(
-      ...themes.map((t) => card(t, { active: !paused && t.id === active, installed: true })),
+      ...themes.map((t) => card(t, {
+          active: !paused && t.id === active,
+          installed: true,
+          editable: true,
+        })),
     );
     ui.themesEmpty.hidden = themes.length > 0;
 
@@ -421,6 +564,25 @@
     marketQuery = ui.marketSearch.value;
     marketVisible = MARKET_PAGE;
     renderMarket();
+  });
+
+  // --- edit / delete dialogs ----------------------------------------------
+  // <dialog> rather than confirm(): the sandbox grants allow-scripts but not
+  // allow-modals, so window.confirm() is blocked and returns nothing.
+  ui.editCancel.addEventListener("click", closeEdit);
+  ui.editSave.addEventListener("click", saveEdit);
+  ui.editFocusX.addEventListener("input", syncFocusLabels);
+  ui.editFocusY.addEventListener("input", syncFocusLabels);
+  ui.editDialog.addEventListener("close", () => { editingId = null; });
+  ui.confirmCancel.addEventListener("click", closeConfirm);
+  ui.confirmOk.addEventListener("click", confirmDelete);
+  ui.confirmDialog.addEventListener("close", () => { deletingId = null; });
+
+  // Enter inside the name field would submit the <form method="dialog"> and close
+  // the sheet without saving; treat it as the save button instead.
+  ui.editForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    saveEdit();
   });
 
   (async () => {

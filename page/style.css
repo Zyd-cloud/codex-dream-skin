@@ -205,3 +205,74 @@
   max-width: 80%;
 }
 .toast.bad { border-color: var(--magpie-accent, Highlight); }
+/* --- per-card actions: edit / delete ---------------------------------- */
+.tools { display: flex; gap: 6px; margin-top: 8px; }
+.tool {
+  flex: 1;
+  padding: 5px 0;
+  font-size: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--magpie-line, ButtonBorder);
+  background: transparent;
+  color: var(--magpie-muted, GrayText);
+  cursor: pointer;
+}
+.tool:hover:not(:disabled) {
+  color: var(--magpie-fg, WindowText);
+  border-color: var(--magpie-fg, WindowText);
+}
+.tool:disabled { opacity: .45; cursor: default; }
+.tool.danger:hover:not(:disabled) { color: #d95757; border-color: #d95757; }
+
+/* --- dialogs ---------------------------------------------------------- */
+.sheet {
+  width: min(420px, 92vw);
+  padding: 18px;
+  border-radius: 14px;
+  border: 1px solid var(--magpie-line, ButtonBorder);
+  background: var(--magpie-bg, Canvas);
+  color: var(--magpie-fg, WindowText);
+}
+.sheet::backdrop { background: rgb(0 0 0 / .45); }
+.sheet h2 { margin: 0 0 10px; font-size: 15px; }
+.sheet .field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 8px 0;
+  font-size: 13px;
+}
+.sheet .field > span { color: var(--magpie-muted, GrayText); flex-shrink: 0; }
+.sheet .field input[type="text"] {
+  flex: 1;
+  min-width: 0;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--magpie-line, ButtonBorder);
+  background: var(--magpie-card, ButtonFace);
+  color: inherit;
+  font: inherit;
+}
+.sheet .field input[type="range"] { flex: 1; min-width: 0; }
+.sheet .field select { flex: 1; min-width: 0; padding: 5px 6px; border-radius: 8px; }
+.sheet output { font-variant-numeric: tabular-nums; }
+.sheet menu {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin: 16px 0 0;
+  padding: 0;
+}
+.sheet .primary, .sheet .danger {
+  padding: 6px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font: inherit;
+}
+.sheet .primary {
+  border: 1px solid var(--magpie-accent, Highlight);
+  background: var(--magpie-accent, Highlight);
+  color: var(--magpie-bg, Canvas);
+}
+.sheet .danger { border: 1px solid #c94b4b; background: #c94b4b; color: #fff; }

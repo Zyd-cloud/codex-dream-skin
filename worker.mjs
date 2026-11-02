@@ -882,6 +882,32 @@ async function handle(request) {
       return r.ok === false ? { ok: false, error: r.error || "switch failed" }
         : { ok: true, message: `已切换到 ${themeId}`, status: r.status };
     }
+    case "delete": {
+      if (!themeId) return { ok: false, error: "themeId is required" };
+      const r = control("delete", ["-ThemeId", themeId], 60000, true);
+      return r.ok === false
+        ? { ok: false, error: r.error || "delete failed" }
+        : { ok: true, message: `已删除 ${themeId}`, status: r.status };
+    }
+    case "update": {
+      if (!themeId) return { ok: false, error: "themeId is required" };
+      const patch = request.patch && typeof request.patch === "object" ? request.patch : {};
+      const args = ["-ThemeId", themeId];
+      // Only the fields the user actually touched are forwarded, so an edit of
+      // the name cannot quietly reset the art settings.
+      if (typeof patch.name === "string" && patch.name.trim()) args.push("-Name", patch.name.trim());
+      if (typeof patch.appearance === "string") args.push("-Appearance", patch.appearance);
+      if (typeof patch.taskMode === "string") args.push("-TaskMode", patch.taskMode);
+      if (typeof patch.safeArea === "string") args.push("-SafeArea", patch.safeArea);
+      if (patch.focusX !== undefined && patch.focusX !== null) args.push("-FocusX", String(patch.focusX));
+      if (patch.focusY !== undefined && patch.focusY !== null) args.push("-FocusY", String(patch.focusY));
+      if (args.length <= 2) return { ok: false, error: "没有要修改的内容" };
+
+      const r = control("update", args, 60000, true);
+      return r.ok === false
+        ? { ok: false, error: r.error || "update failed" }
+        : { ok: true, message: `已更新 ${r.theme?.name || themeId}`, status: r.status };
+    }
     case "market-thumbs":
       return await fetchThumbnailsFor(request.ids);
     case "pause": {
