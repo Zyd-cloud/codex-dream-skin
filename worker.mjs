@@ -968,14 +968,18 @@ async function commandLoop() {
     const request = options.request;
     const id = request && typeof request === "object" ? String(request.id || "") : "";
 
-    if (!id) {
-      if (Date.now() - lastPublishAt >= STATE_REFRESH_MS) {
-        lastPublishAt = Date.now();
-        publish({ id: "", ok: true, message: "", state: buildState() });
-      }
-      return;
+    // Refresh on a timer even while a request is parked in the options file.
+    // magpie never clears that last request, so gating this on `!id` froze the
+    // page at the previous command's snapshot: supervise starts the injector
+    // a second later, but the page went on showing "injector not running"
+    // forever, and a theme installed from the market never showed up as
+    // installed until the user clicked something else.
+    if (Date.now() - lastPublishAt >= STATE_REFRESH_MS) {
+      lastPublishAt = Date.now();
+      publish({ id: "", ok: true, message: "", state: buildState() });
     }
 
+    if (!id) return;
     if (id === lastRequestId) return;
     if (!claimRequest(id, request.action)) return;
 
